@@ -1,16 +1,16 @@
 import React from "react"
+import './NavBar.css'
 
 
-
-const App = function(){
+const NavBar = function(){
   return(
     <>     
       <header>
-        <h1>Guitarras Lider</h1>
+        <h1 className="titulo">Guitarras Lider</h1>
       </header>
-      <p>Guitarras viejas</p>
+      <p>Guitarras Nuevas</p>
     </>
   )
 }
 
-export default App;
+export default NavBar;
