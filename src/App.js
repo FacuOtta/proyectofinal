@@ -1,11 +1,14 @@
+import React from "react"
 import './App.css';
 import NavBar from './components/NavBar';
-import React from "react"
+import ItemListContainer from './components/ItemListContainer'
+
 
 function App(){
   return(
     <header>
-      <NavBar/>
+      <NavBar/>  
+      <ItemListContainer greeting="Hola mundo"/>    
     </header>
   )
 }
