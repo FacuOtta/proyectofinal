@@ -1,6 +1,7 @@
 import React from "react"
 import './NavBar.css'
 import CartWidget from './CartWidget'
+import ItemCount from "./ItemCount"
 
 
 const NavBar = function(){
@@ -14,6 +15,7 @@ const NavBar = function(){
         <li>Contacto</li>
         <li>Nosotros</li>
         <li><CartWidget/></li>
+        <ItemCount stock={5} initial={1}/>
       </ul>      
     </>
   )
