@@ -1,8 +1,7 @@
 import React from 'react'
 import Item from './Item'
 
-const ItemList = (props) => {
-  
+const ItemList = (props) => {  
   return(
     <div>
       <h3>Item List</h3>

@@ -3,7 +3,7 @@ import React from 'react'
 const Item = (props) => {
   return(
     <div>
-      <strong>{props.guitar.name}</strong>
+      <strong>{props.guitarras.name}</strong>
     </div>
   )
 }

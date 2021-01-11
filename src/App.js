@@ -2,6 +2,8 @@ import React from "react"
 import './App.css';
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer'
+import ItemDetailContainer from "./components/ItemDetailContainer";
+
 // import ItemCount from './components/ItemCount';
 
 function App(){
@@ -24,7 +26,8 @@ function App(){
     <>
       <header>
         <NavBar/>  
-        <ItemListContainer/>           
+        { /* <ItemListContainer/>  */  }
+        <ItemDetailContainer/>       
       </header>      
     </>  
   )
