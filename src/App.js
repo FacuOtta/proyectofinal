@@ -1,9 +1,10 @@
 import React from "react"
 import './App.css';
-import NavBar from './components/NavBar';
+// import NavBar from './components/NavBar';
+import Header from "./components/Header"
 import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from "./components/ItemDetailContainer";
-
+import {BrowserRouter} from "react-router-dom"  
 // import ItemCount from './components/ItemCount';
 
 function App(){
@@ -23,14 +24,13 @@ function App(){
   // }
 
   return(
-    <>
-      <header>
-        <NavBar/>  
+    <BrowserRouter>
+        <Header/>      
+        {/* <NavBar/>   */}
         { /* <ItemListContainer/>  */  }
-        <ItemDetailContainer/>       
-      </header>      
-    </>  
+        <ItemDetailContainer/>                   
+    </BrowserRouter>  
   )
 }
 
-export default App;
+export default App

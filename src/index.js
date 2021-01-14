@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Main from './Main'
 import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Main />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -19,4 +20,6 @@ reportWebVitals();
 
 // const Componente = <p>Hola Mundo</p>
 
-ReactDOM.render( <App/> , document.getElementById("root"))
+ReactDOM.render( <Main/> , document.getElementById("root"))
+
+// ReactDOM.render( <App/> , document.getElementById("root"))
