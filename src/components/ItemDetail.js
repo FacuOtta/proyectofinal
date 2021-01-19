@@ -1,6 +1,8 @@
 import React from "react"
 
+
 const ItemDetail = (props) => {
+ 
   return(
     <div>
       <h3>Item Detail</h3>
@@ -8,8 +10,9 @@ const ItemDetail = (props) => {
         return <div key={guitarra.id}>
           <h1>{guitarra.brand} {guitarra.description}</h1>
           <img src={guitarra.photo}/>
-        </div>
+        </div>        
       })}
+      
     </div>
   )
 }

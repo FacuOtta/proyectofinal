@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-const ItemCount = function ({stock, initial}) {
+const ItemCount = function ({stock, initial, onAddItem}) {
   const [mensaje, setMensaje] = useState("")
   const [contador, setContador] = useState(initial)
 
@@ -19,7 +19,8 @@ const ItemCount = function ({stock, initial}) {
 
   const agregarAlCarrito = () => {
     if (contador <= stock){
-      setMensaje(contador + " Items agregados")
+      onAddItem(contador)
+      // setMensaje(contador + " Items agregados")
     }else{
       setMensaje("Stock Insuficiente")
     }

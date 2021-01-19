@@ -8,6 +8,7 @@ import {
 import Category from "./components/Category"
 import Home from "./components/Home"
 import InstrumentItem from "./components/InstrumentItem"
+import Cart from "./components/Cart"
 // import ItemDetailContainer from "./components/ItemDetailContainer"
 //import ItemCount from "./components/ItemCount"
 
@@ -32,6 +33,12 @@ const Main = () => {
         <Route path="/instrument/:id">
           <InstrumentItem/>
         </Route>
+
+        <Route path="/cart">
+          <Cart/>
+        </Route>
+
+
 
         
 {/* 

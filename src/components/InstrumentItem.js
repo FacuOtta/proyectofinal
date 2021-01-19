@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { NavLink,useParams } from "react-router-dom"
+import ItemCount from "./ItemCount"
 
 const InstrumentItem = () =>{
   const {id} = useParams()
@@ -26,6 +27,15 @@ const InstrumentItem = () =>{
     return p
   }
 
+  const onAdd = (quantityToAdd) => {
+    console.log(quantityToAdd)
+    setIsCountVisible(false)
+    setQuantityAdded(quantityToAdd)
+      
+  }
+  const [quantityAdded, setQuantityAdded] = useState(0)
+  const [isCountVisible, setIsCountVisible] = useState(true) 
+  
   useEffect(() => {
     let montaje = true
     
@@ -42,9 +52,9 @@ const InstrumentItem = () =>{
   return(
     <>  
       <h1>{instrument.name}</h1>
-      <img src={instrument.img}/>
-      
-      
+      <img src={instrument.img}/>   
+      {isCountVisible && <ItemCount initial={0} stock={5} onAddItem={onAdd}/>}   
+      {!isCountVisible && <NavLink to="/cart">Terminar Compra {quantityAdded} Items agregados</NavLink>}          
     </>
   )
 }
