@@ -40,21 +40,16 @@ const Category = () =>{
       montaje = false      
     }
   }, []) 
-
-
-  
-
   return(
-    <div>
+    <>
       {/* <NavLink to="/category/1">category</NavLink> */}
-      <NavLink to="/"> Back Home</NavLink>
       <ul>
       {instruments.map((instrument)=>{
         return <li key={instrument.id}><NavLink to={"/instrument/" + instrument.id} >{instrument.name}</NavLink></li>     
 
       })}
       </ul>
-    </div>
+    </>
   )
 }
 

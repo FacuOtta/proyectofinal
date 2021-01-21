@@ -1,5 +1,5 @@
 import React from "react"
-
+import CartContext from "./componets/CartContext"
 
 const ItemDetail = (props) => {
  

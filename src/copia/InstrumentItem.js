@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { NavLink,useParams } from "react-router-dom"
 import ItemCount from "./ItemCount"
-import CartContext from './CartContext'
 
 const InstrumentItem = () =>{
   const {id} = useParams()
@@ -28,24 +27,13 @@ const InstrumentItem = () =>{
     return p
   }
 
-  
-  const cart = useContext(CartContext)
-  const [guitarsAdded] = useState(cart.guitars)
-  const [isGuitarInCart, setIsGuitarInCart] = useState(false)
-  console.log(cart)
-
   const onAdd = (quantityToAdd) => {
-    // setIsCountVisible(false)
+    console.log(quantityToAdd)
+    setIsCountVisible(false)
     setQuantityAdded(quantityToAdd)
-    
-    if (cart.isInCart(instrument.id)){
-      setIsGuitarInCart(true)
-    } else {
-      cart.addGuitar(instrument, quantityToAdd)
-    }
-    
+      
   }
-  const [quantityAdded, setQuantityAdded] = useState(1)
+  const [quantityAdded, setQuantityAdded] = useState(0)
   const [isCountVisible, setIsCountVisible] = useState(true) 
   
   useEffect(() => {
@@ -61,25 +49,12 @@ const InstrumentItem = () =>{
       montaje = false      
     }
   }, []) 
-
   return(
     <>  
-      <NavLink to={"/category/"+instrument.categoryId}> Back to Categories</NavLink>
       <h1>{instrument.name}</h1>
       <img src={instrument.img}/>   
       {isCountVisible && <ItemCount initial={0} stock={5} onAddItem={onAdd}/>}   
-      {isGuitarInCart && <div>Guitarra ya existente en el Carrito!!!</div>}
-      {/* {!isCountVisible && <NavLink to="/cart">Terminar Compra {quantityAdded} Items agregados</NavLink>} */}
-      
-
-      <h2>Guitarras en el Carrito</h2>
-      {cart.guitars.length === 0 && 'No hay guitarras en el carrito'}
-
-      {cart.guitars.length > 0 && <button onClick={cart.clear}>Vaciar Carrito</button>}
-
-      {cart.guitars.length > 0 && cart.guitars.map(g => {
-        return <div key={g.id}>{g.name} ({g.quantity} unidades)</div>
-      })}
+      {!isCountVisible && <NavLink to="/cart">Terminar Compra {quantityAdded} Items agregados</NavLink>}          
     </>
   )
 }

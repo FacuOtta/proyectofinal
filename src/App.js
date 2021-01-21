@@ -5,6 +5,7 @@ import Header from "./components/Header"
 import ItemListContainer from './components/ItemListContainer'
 import ItemDetailContainer from "./components/ItemDetailContainer";
 import {BrowserRouter} from "react-router-dom"  
+import CartContext from "./components/CartContext"
 // import ItemCount from './components/ItemCount';
 
 function App(){
