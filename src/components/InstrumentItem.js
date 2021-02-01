@@ -3,30 +3,17 @@ import { NavLink,useParams } from "react-router-dom"
 import ItemCount from "./ItemCount"
 import CartContext from './CartContext'
 import CartWidget from './CartWidget'
+import { firestore } from "../firebase"
+
 
 const InstrumentItem = () =>{
   const {id} = useParams()
 
   const [instrument, setInstrument] = useState([])
   
-  const getInstrumentsById = (instrumentId) =>{
-    const p = new Promise((resolve) =>{
-      const instruments = [
-        { id: 1, categoryId: 1, name: 'Gibson Les Paul', price: 1200, img:"https://static.gibson.com/product-images/Custom/CUS118365/Ebony/front-banner-1600_900.png" },
-        { id: 2, categoryId: 1, name: 'Gibson Flying V', price: 1000, img:"https://www.organigramaguitars.com/73887-large_default/guitarra-electrica-gibson-flying-v-2018-aged-cherry.jpg" },
-        { id: 3, categoryId: 1, name: 'Gibson SG', price: 1300, img:"https://www.cutawayguitarmagazine.com/wp-content/uploads/2014/08/SG14HCRC1-Glam-Shot-590x238.jpg" },
-        { id: 4, categoryId: 2, name: 'Fender Jazz Bass', price: 800, img:"https://www.fmicassets.com/Damroot/ZoomJpg/10006/0194580775_gtr_frt_001_rr.jpg"},
-        { id: 5, categoryId: 2, name: 'Fender Precision Bass', price: 2200, img:"https://bairesrocks.vteximg.com.br/arquivos/ids/203416-700-700/641491-MLA27134554951_042018-F.jpg?v=637313064985130000" },
-        { id: 6, categoryId: 2, name: 'Fender Telecaster Bass', price: 1350, img:"https://http2.mlstatic.com/bajo-electrico-4-cuerdas-fender-telecaster-bass-modern-china-D_Q_NP_783047-MLA41230435984_032020-F.webp" }
-      ]
-
-      const filteredInstruments = instruments.filter((instrument)=>{        
-        return instrument.id === parseInt(instrumentId)
-      })      
-      resolve(filteredInstruments[0])     
-    })
-
-    return p
+  const getInstrumentsById = () => {
+    const db = firestore
+    return db.collection("items").doc(id).get()  
   }
 
   
@@ -36,7 +23,6 @@ const InstrumentItem = () =>{
   console.log(cart)
 
   const onAdd = (quantityToAdd) => {
-    // setIsCountVisible(false)
     setQuantityAdded(quantityToAdd)
     
     if (cart.isInCart(instrument.id)){
@@ -52,9 +38,9 @@ const InstrumentItem = () =>{
   useEffect(() => {
     let montaje = true
     
-    getInstrumentsById(id).then((filteredInstruments) => {
+    getInstrumentsById().then((doc) => {
       if(montaje){
-        setInstrument(filteredInstruments)
+        setInstrument(doc.data())
       }
     })
     
@@ -69,8 +55,8 @@ const InstrumentItem = () =>{
       <CartWidget />
       <hr/>
       <NavLink to={"/category/"+instrument.categoryId}> Back to Categories</NavLink>
-      <h1>{instrument.name}</h1>
-      <img src={instrument.img} style={{width:'200px'}}/>   
+      <h1>{instrument.title}</h1>
+      <img src={instrument.imageUrl} style={{width:'200px'}}/>   
       {isCountVisible && <ItemCount initial={1} stock={5} onAddItem={onAdd}/>}   
       {isGuitarInCart && <div>Guitarra ya existente en el Carrito!!!</div>}               
     </>
