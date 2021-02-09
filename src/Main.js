@@ -27,6 +27,7 @@ const Main = () => {
   }
 
   const isInCart = (guitarId) => {
+    console.log(guitarId)
     return guitars.filter(guitar => guitar.id === guitarId).length > 0
   }
 

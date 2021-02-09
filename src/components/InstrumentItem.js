@@ -17,6 +17,10 @@ const InstrumentItem = () =>{
   }
 
   
+
+
+
+  
   const cart = useContext(CartContext)
   const [guitarsAdded] = useState(cart.guitars)
   const [isGuitarInCart, setIsGuitarInCart] = useState(false)
@@ -28,6 +32,7 @@ const InstrumentItem = () =>{
     if (cart.isInCart(instrument.id)){
       setIsGuitarInCart(true)
     } else {
+      console.log(instrument)
       cart.addGuitar(instrument, quantityToAdd)
     }
     
@@ -40,7 +45,8 @@ const InstrumentItem = () =>{
     
     getInstrumentsById().then((doc) => {
       if(montaje){
-        setInstrument(doc.data())
+        console.log(doc.data(), doc)
+        setInstrument({...doc.data(), id:doc.id})
       }
     })
     
@@ -58,7 +64,7 @@ const InstrumentItem = () =>{
       <h1>{instrument.title}</h1>
       <img src={instrument.imageUrl} style={{width:'200px'}}/>   
       {isCountVisible && <ItemCount initial={1} stock={5} onAddItem={onAdd}/>}   
-      {isGuitarInCart && <div>Guitarra ya existente en el Carrito!!!</div>}               
+      {isGuitarInCart && <div>Guitarra ya existente en el Carrito!!!</div>}                    
     </>
   )
 }
