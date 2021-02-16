@@ -24,7 +24,7 @@ const InstrumentItem = () =>{
   const cart = useContext(CartContext)
   const [guitarsAdded] = useState(cart.guitars)
   const [isGuitarInCart, setIsGuitarInCart] = useState(false)
-  console.log(cart)
+
 
   const onAdd = (quantityToAdd) => {
     setQuantityAdded(quantityToAdd)
@@ -32,7 +32,6 @@ const InstrumentItem = () =>{
     if (cart.isInCart(instrument.id)){
       setIsGuitarInCart(true)
     } else {
-      console.log(instrument)
       cart.addGuitar(instrument, quantityToAdd)
     }
     
@@ -45,7 +44,6 @@ const InstrumentItem = () =>{
     
     getInstrumentsById().then((doc) => {
       if(montaje){
-        console.log(doc.data(), doc)
         setInstrument({...doc.data(), id:doc.id})
       }
     })

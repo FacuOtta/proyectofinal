@@ -10,6 +10,8 @@ import Home from "./components/Home"
 import InstrumentItem from "./components/InstrumentItem"
 import Cart from "./components/Cart"
 import CartContext from './components/CartContext'
+import BuyerForm from "./components/BuyerForm"
+
 // import ItemDetailContainer from "./components/ItemDetailContainer"
 //import ItemCount from "./components/ItemCount"
 
@@ -20,19 +22,33 @@ import CartContext from './components/CartContext'
 
 const Main = () => {
   const [guitars, setGuitars] = useState([])
-
+  const [buyer, setBuyer] = useState ({name:"", email:"", phone:""})
+  
   const addGuitar = (guitar, quantity) => {    
     guitar.quantity = quantity
     setGuitars(guitars.concat(guitar))
   }
 
+  const addBuyer = (buyerData) => {
+    setBuyer(buyerData)
+  }
+
+  const getBuyer = () => {
+    return buyer
+  }
+
+  const isFormDisabled = () => {
+    return buyer.name.length === 0 || buyer.email.length === 0 || buyer.phone.length === 0
+  }
+
+
   const isInCart = (guitarId) => {
-    console.log(guitarId)
     return guitars.filter(guitar => guitar.id === guitarId).length > 0
   }
 
   const clear = () => {
     setGuitars([])
+    setBuyer({name:"", email:"", phone:""})
   }
 
   const getQuantity = () => {
@@ -77,7 +93,10 @@ const Main = () => {
       isInCart: isInCart, 
       getQuantity: getQuantity,
       getTotalPrice: getTotalPrice,
-      removeGuitar: removeGuitar
+      removeGuitar: removeGuitar,
+      addBuyer: addBuyer,
+      getBuyer: getBuyer,
+      isFormDisabled: isFormDisabled
     }}>
       <Router>         
         <Switch>
@@ -95,7 +114,7 @@ const Main = () => {
 
           <Route path="/cart">
             <Cart/>
-          </Route>
+          </Route>        
         </Switch>  
       </Router>
     </CartContext.Provider>
